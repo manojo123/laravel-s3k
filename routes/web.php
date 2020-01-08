@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->middleware('auth');
 
 Route::get('/test', function () {
     return view('index');

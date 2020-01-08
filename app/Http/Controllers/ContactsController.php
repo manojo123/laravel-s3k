@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ContactsController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth'/*, ['except' => [
+            'index',
+            'show'
+        ]]*/);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,10 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest()->simplePaginate(3);
+        $contacts = Contact::
+            where(['user_id' => auth()->id()])
+            ->simplePaginate(3);
+
         return view('contacts.index', compact('contacts')); // ['contacts' => $contact]
     }
 
@@ -40,6 +51,7 @@ class ContactsController extends Controller
         $this->validateForm($request);
 
         Contact::create([
+            'user_id' => auth()->id(),
             'subject' => $request->subject,
             'message' => $request->message
         ]);
@@ -55,6 +67,13 @@ class ContactsController extends Controller
      */
     public function show(Contact $contact)
     {
+        if (Gate::denies('view', $contact)) {
+
+            return redirect('/contacts')
+                ->withErrors("Dont hack me plz");
+                
+        }
+        
         return view('contacts.show', compact('contact'));
     }
 

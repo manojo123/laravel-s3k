@@ -44,25 +44,27 @@
 
 -CRUD Contacto
 
+-Pagination (https://laravel.com/docs/6.x/pagination#paginating-eloquent-results)
+
 -POST csrf (https://laravel.com/docs/6.x/csrf)
 
 -Validations (https://laravel.com/docs/6.x/validation#available-validation-rules)
 
 -Display validation Errors (https://laravel.com/docs/6.x/validation#quick-displaying-the-validation-errors)
 
--Factory $faker (https://github.com/fzaninotto/Faker)
+-Factory $fkear (https://github.com/fzaninotto/Faker)
 
 -Refactorar Form Create Edit
 
 -Eloquent Relationships (https://laravel.com/docs/6.x/eloquent-relationships)
+
+-Alter table Migration Contact user_id
 
 -Pivot Table with Timestamps
 
 -Attach Detach
 
 -Auth Middleware (https://laravel.com/docs/master/middleware)
-
--Alter table Migration Contact user_id
 
 -Auth Helper
 
@@ -71,8 +73,6 @@
 -SuperUser Gate AuthServiceProvider
 
 -PHPUNIT (https://laravel.com/docs/6.x/testing#introduction)
-
--Pagination (https://laravel.com/docs/6.x/pagination#paginating-eloquent-results)
 
 -Passport (https://laravel.com/docs/6.x/passport#installation)
 
