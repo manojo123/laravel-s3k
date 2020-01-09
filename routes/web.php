@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+include(base_path('/routes/api.php'));
 
 Route::get('/', 'IndexController@index')->middleware('auth');
 

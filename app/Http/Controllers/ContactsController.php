@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Mail\SendConfirmationContactMail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class ContactsController extends Controller
 {
@@ -50,11 +52,14 @@ class ContactsController extends Controller
     {
         $this->validateForm($request);
 
-        Contact::create([
+        $contact = Contact::create([
             'user_id' => auth()->id(),
             'subject' => $request->subject,
             'message' => $request->message
         ]);
+
+        Mail::to(auth()->user()->email)
+            ->send((new SendConfirmationContactMail($contact)));
 
         return redirect('/contacts');
     }
